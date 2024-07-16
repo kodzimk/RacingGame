@@ -1,6 +1,6 @@
 # RacingGame
 
-#Features
+# Features
 1) 3D Gameplay
 2) AI racers
 3) Lightining
