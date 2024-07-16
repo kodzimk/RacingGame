@@ -20,9 +20,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Library Include="dep\lib\x64\Debug\DirectXTK.lib" />
+    <Library Include="dep\lib\x64\Release\DirectXTK.lib" />
     <Library Include="dep\lib\x86\Debug\DirectXTK.lib" />
     <Library Include="dep\lib\x86\Release\DirectXTK.lib" />
-    <Library Include="dep\lib\x64\Release\DirectXTK.lib" />
-    <Library Include="dep\lib\x64\Debug\DirectXTK.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Others\Win.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

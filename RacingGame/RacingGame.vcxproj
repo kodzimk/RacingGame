@@ -155,6 +155,9 @@
     <Library Include="dep\lib\x86\Debug\DirectXTK.lib" />
     <Library Include="dep\lib\x86\Release\DirectXTK.lib" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Others\Win.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
