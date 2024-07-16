@@ -3,9 +3,9 @@ Racing game with ai and npc with audio and levels stunning gameplay and maps
 You can race and complete level by level
 
 # Tools
-1)Rendering API: Direct3d,Directx
-2)Other: Assimp,OpenAL,JSON,DirectXTK
-3)C++,C
+1) Rendering API: Direct3d,Directx
+2) Other: Assimp,OpenAL,JSON,DirectXTK
+3) C++,C
 
 # Features
 1) 3D Gameplay
