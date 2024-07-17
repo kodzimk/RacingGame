@@ -133,8 +133,11 @@ void Graphics::Update()
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
+	ImGui::Begin("Racing Game",&exit,ImGuiWindowFlags_NoResize |
+		                    ImGuiWindowFlags_NoSavedSettings | 
+		                     ImGuiWindowFlags_NoCollapse | 
+		                      ImGuiWindowFlags_NoMove);
 
-	ImGui::Begin(" ");
 	ImGui::SetWindowPos(ImVec2(0, 0));
 	ImGui::SetWindowSize(ImVec2(1024, 768));
 	ImGui::Image((void*)my_texture, ImVec2(768, 384));

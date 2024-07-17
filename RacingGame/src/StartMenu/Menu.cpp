@@ -1,14 +1,23 @@
 #include "Menu.h"
+#include"..\imgui\imgui_impl_dx11.h"
+#include"..\imgui\imgui.h"
+#include"..\imgui\imgui_impl_win32.h"
+
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND window, UINT msg, WPARAM wParam, LPARAM lParam);
 
 LRESULT WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam))
+		return true;
+
 	switch (msg)
 	{
-	case WM_CLOSE:
+	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
 	}
-	return DefWindowProc(hwnd, msg, wParam, lParam);
+
+	return DefWindowProcW(hwnd, msg, wParam, lParam);
 }
 
 Menu::Menu(int width, int height, HINSTANCE hInstance)
@@ -20,7 +29,7 @@ Menu::Menu(int width, int height, HINSTANCE hInstance)
 	wnd.cbSize = sizeof(WNDCLASSEX);
 	wnd.lpszClassName = name.c_str();
 	wnd.style = CS_OWNDC;
-	wnd.lpfnWndProc = WndProc;
+	wnd.lpfnWndProc = DefWindowProc;
 	wnd.cbWndExtra = 0;
 	wnd.hIcon = nullptr;
 	wnd.hCursor = nullptr;
@@ -33,6 +42,7 @@ Menu::Menu(int width, int height, HINSTANCE hInstance)
 	hwnd = CreateWindowEx(0, name.c_str(), "Racing Game", WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU,
 		CW_USEDEFAULT, CW_USEDEFAULT, width, height, nullptr, nullptr, hInstance, this);
 
+	SetWindowLong(hwnd, GWL_STYLE, 0);
 	ShowWindow(hwnd, SW_SHOW);
 
 	gfx = std::make_unique<Graphics>(hwnd);
@@ -55,6 +65,7 @@ std::optional<int> Menu::ProccesMessages()
 			return msg.wParam;
 		}
 
+		gfx->Update();
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}

@@ -24,5 +24,7 @@ public:
 	ComPtr<IDXGISwapChain> pSwapChain;
 	ComPtr<ID3D11DeviceContext> pContext;
 	ComPtr<ID3D11RenderTargetView> pRenderTarget;
+private:
+	 bool exit = true;
 };
 

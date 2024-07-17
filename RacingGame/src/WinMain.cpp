@@ -6,17 +6,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 	Menu* menu = new Menu(1024, 768, hInstance);
 
 	while (menu != nullptr && true){
-		while (menu != nullptr){	
-			if (const auto ecode = menu->ProccesMessages())
-			{
-				if (ecode == 0)
-					menu = nullptr;
-
-				return *ecode;
-			}
-			menu->gfx->Update();
-		}
-
+		menu->ProccesMessages();
 	}
 	
 	return 0;
