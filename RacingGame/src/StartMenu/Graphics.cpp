@@ -113,6 +113,9 @@ Graphics::Graphics(HWND hwnd)
 	ImGui_ImplDX11_Init(pDevice.Get(), pContext.Get());
 	ImGui::StyleColorsDark();
 
+	bool ret = LoadTextureFromFile("res/image/Background.jpeg", my_texture.GetAddressOf(), &my_image_width, &my_image_height, pDevice.Get());
+	IM_ASSERT(ret);
+
 }
 
 Graphics::~Graphics()
@@ -125,9 +128,6 @@ void Graphics::Update()
 
 	int my_image_width = 0;
 	int my_image_height = 0;
-	ID3D11ShaderResourceView* my_texture = NULL;
-	bool ret = LoadTextureFromFile("res/image/Background.jpeg", &my_texture, &my_image_width, &my_image_height,pDevice.Get());
-	IM_ASSERT(ret);
 
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
@@ -140,7 +140,7 @@ void Graphics::Update()
 
 	ImGui::SetWindowPos(ImVec2(0, 0));
 	ImGui::SetWindowSize(ImVec2(1024, 768));
-	ImGui::Image((void*)my_texture, ImVec2(768, 384));
+	ImGui::Image((void*)my_texture.Get(), ImVec2(768, 384));
 	ImGui::End();
 
 	ImGui::Render();

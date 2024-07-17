@@ -24,7 +24,11 @@ public:
 	ComPtr<IDXGISwapChain> pSwapChain;
 	ComPtr<ID3D11DeviceContext> pContext;
 	ComPtr<ID3D11RenderTargetView> pRenderTarget;
+	ComPtr<ID3D11ShaderResourceView> my_texture;
 private:
 	 bool exit = true;
+	 int my_image_width = 0;
+	 int my_image_height = 0;
+
 };
 
