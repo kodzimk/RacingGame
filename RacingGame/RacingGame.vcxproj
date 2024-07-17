@@ -169,6 +169,7 @@
     <Library Include="dep\lib\x86\Release\DirectXTK.lib" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Others\stbi_image.h" />
     <ClInclude Include="src\StartMenu\Graphics.h" />
     <ClInclude Include="src\StartMenu\Menu.h" />
     <ClInclude Include="src\imgui\imconfig.h" />
@@ -181,6 +182,10 @@
     <ClInclude Include="src\imgui\imstb_truetype.h" />
     <ClInclude Include="src\Others\Win.h" />
     <ClInclude Include="src\Windows.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\image\Background.jpeg" />
+    <Image Include="res\image\MyImage01.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

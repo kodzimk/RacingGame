@@ -3,7 +3,7 @@
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
 {
-	Menu* menu = new Menu(800, 600, hInstance);
+	Menu* menu = new Menu(1024, 768, hInstance);
 
 	while (menu != nullptr && true){
 		while (menu != nullptr){	
