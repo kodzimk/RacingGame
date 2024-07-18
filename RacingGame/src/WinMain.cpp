@@ -25,7 +25,18 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 					delete menu;
 					menu = nullptr;
 					result = 2;
+			
 				}
+		}
+		while (window != nullptr)
+		{
+			window->ProccesMessages();
+			if(window->ecode == 2)
+			{
+				result = window->ecode;
+				delete window;
+				window = nullptr;
+			}
 		}
 	}
 	
