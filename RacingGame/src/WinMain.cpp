@@ -31,6 +31,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 		while (window != nullptr)
 		{
 			window->ProccesMessages();
+			window->InputHandler();
 			if(window->ecode == 2)
 			{
 				result = window->ecode;

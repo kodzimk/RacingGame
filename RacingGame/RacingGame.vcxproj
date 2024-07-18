@@ -158,6 +158,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\System\Keyboard.cpp" />
+    <ClCompile Include="src\System\KeyboardEvent.cpp" />
+    <ClCompile Include="src\System\Mouse.cpp" />
     <ClCompile Include="src\imgui\etc_elements.cpp" />
     <ClCompile Include="src\imgui\nav_elements.cpp" />
     <ClCompile Include="src\StartMenu\Graphics.cpp" />
@@ -168,10 +171,14 @@
     <ClCompile Include="src\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="src\imgui\imgui_tables.cpp" />
     <ClCompile Include="src\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\System\MouseEvent.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
     <ClCompile Include="src\Level\Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\System\Keyboard.h" />
+    <ClInclude Include="src\System\KeyboardEvent.h" />
+    <ClInclude Include="src\System\Mouse.h" />
     <ClInclude Include="src\imgui\byte_array.h" />
     <ClInclude Include="src\imgui\etc_elements.h" />
     <ClInclude Include="src\imgui\imgui_internal.h" />
@@ -188,6 +195,7 @@
     <ClInclude Include="src\imgui\imstb_truetype.h" />
     <ClInclude Include="src\Others\Win.h" />
     <ClInclude Include="src\Level\Windows.h" />
+    <ClInclude Include="src\System\MouseEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\image\Background.jpeg" />

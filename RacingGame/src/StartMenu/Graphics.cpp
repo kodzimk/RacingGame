@@ -115,8 +115,8 @@ Graphics::Graphics(HWND hwnd)
 	D3D11_VIEWPORT vt;
 	vt.TopLeftX = 0;
 	vt.TopLeftY = 0;
-	vt.Width = 800;
-	vt.Height = 600;
+	vt.Width    = 800;
+	vt.Height   = 600;
 	vt.MinDepth = 0;
 	vt.MaxDepth = 1;
 
@@ -131,8 +131,8 @@ Graphics::Graphics(HWND hwnd)
     ImGui::StyleColorsDark();
     this->io = &io;
 
-	/*bool ret = LoadTextureFromFile("../RacingGame/res/image/speed.jpg", my_texture.GetAddressOf(), &my_image_width, &my_image_height, pDevice.Get());*/
-	bool ret = LoadTextureFromFile("res/image/speed.jpg", my_texture.GetAddressOf(), &my_image_width, &my_image_height, pDevice.Get());
+	bool ret = LoadTextureFromFile("../RacingGame/res/image/speed.jpg", my_texture.GetAddressOf(), &my_image_width, &my_image_height, pDevice.Get());
+	/*bool ret = LoadTextureFromFile("res/image/speed.jpg", my_texture.GetAddressOf(), &my_image_width, &my_image_height, pDevice.Get());*/
 	IM_ASSERT(ret);
 
     // Setup Dear ImGui contex
