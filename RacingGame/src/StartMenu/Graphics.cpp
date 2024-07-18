@@ -16,6 +16,7 @@
 #include "..\Others\stbi_image.h"
 
 #include<stdlib.h>
+#include<string>
 
 ImFont* bold;
 ImFont* tab_icons;
@@ -146,6 +147,8 @@ Graphics::~Graphics()
 
 void Graphics::Update(HWND hwnd)
 {
+	 
+	ImGuiStyle style = ImGui::GetStyle();
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
@@ -158,8 +161,24 @@ void Graphics::Update(HWND hwnd)
 	ImGui::SetWindowPos(ImVec2(0, 0));
 	ImGui::SetWindowSize(ImVec2(1024, 768));
 	ImGui::GetWindowDrawList()->AddImage((void*)my_texture.Get(), ImVec2(0, 0), ImVec2(800, 600));
-	ImGui::GetWindowDrawList()->AddText(GetDefaultFont(),30.f,ImVec2(230, 100), ImColor(250, 250, 250), "Need For Speed : Demo");
+	ImGui::GetWindowDrawList()->AddText(GetDefaultFont(), 30.f, ImVec2(230, 100), ImColor(250, 250, 250), "Need For Speed : Demo"); 
+
+	ImGui::SetCursorPos(ImVec2(330, 200));
+	ImGui::Button("Start", ImVec2(150, 70));
+
+	if(ImGui::GetMousePos().x > 410 && ImGui::GetMousePos().x < 410 + 200 &&
+	   ImGui::GetMousePos().y > 250 && ImGui::GetMousePos().y < 340 && io->MouseClicked[0] == true)
+		ecode = 1;
+	
+	ImGui::SetCursorPos(ImVec2(330, 300));
+	ImGui::Button("Quit", ImVec2(150, 70));
+	
+	if (ImGui::GetMousePos().x > 420 && ImGui::GetMousePos().x < 420 + 200 &&
+		ImGui::GetMousePos().y > 380 && ImGui::GetMousePos().y < 470 && io->MouseClicked[0] == true)
+			ecode = 1;
+	
 	ImGui::End();
+	ImGui::EndFrame();
 
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
