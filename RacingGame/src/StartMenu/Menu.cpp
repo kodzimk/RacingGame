@@ -5,7 +5,7 @@
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND window, UINT msg, WPARAM wParam, LPARAM lParam);
 
-LRESULT WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT  WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam))
 		return true;
@@ -29,7 +29,7 @@ Menu::Menu(int width, int height, HINSTANCE hInstance)
 	wnd.cbSize = sizeof(WNDCLASSEX);
 	wnd.lpszClassName = name.c_str();
 	wnd.style = CS_OWNDC;
-	wnd.lpfnWndProc = WndProc;
+	wnd.lpfnWndProc = (WNDPROC)WndProc;
 	wnd.cbWndExtra = 0;
 	wnd.hIcon = nullptr;
 	wnd.hCursor = nullptr;
@@ -57,7 +57,7 @@ std::optional<int> Menu::ProccesMessages()
 {
 	MSG msg;
 
-	while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+	while (GetMessage(&msg, nullptr, 0, 0) > 0)
 	{
 		if (msg.message == WM_QUIT)
 		{

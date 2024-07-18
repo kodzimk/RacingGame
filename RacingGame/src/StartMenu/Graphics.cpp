@@ -131,6 +131,7 @@ Graphics::Graphics(HWND hwnd)
     ImGui::StyleColorsDark();
     this->io = &io;
 
+	/*bool ret = LoadTextureFromFile("../RacingGame/res/image/speed.jpg", my_texture.GetAddressOf(), &my_image_width, &my_image_height, pDevice.Get());*/
 	bool ret = LoadTextureFromFile("res/image/speed.jpg", my_texture.GetAddressOf(), &my_image_width, &my_image_height, pDevice.Get());
 	IM_ASSERT(ret);
 
@@ -175,7 +176,7 @@ void Graphics::Update(HWND hwnd)
 	
 	if (ImGui::GetMousePos().x > 420 && ImGui::GetMousePos().x < 420 + 200 &&
 		ImGui::GetMousePos().y > 380 && ImGui::GetMousePos().y < 470 && io->MouseClicked[0] == true)
-			ecode = 1;
+			ecode = 2;
 	
 	ImGui::End();
 	ImGui::EndFrame();

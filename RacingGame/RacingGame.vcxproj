@@ -169,7 +169,7 @@
     <ClCompile Include="src\imgui\imgui_tables.cpp" />
     <ClCompile Include="src\imgui\imgui_widgets.cpp" />
     <ClCompile Include="src\WinMain.cpp" />
-    <ClCompile Include="src\Windows.cpp" />
+    <ClCompile Include="src\Level\Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\imgui\byte_array.h" />
@@ -187,7 +187,7 @@
     <ClInclude Include="src\imgui\imstb_textedit.h" />
     <ClInclude Include="src\imgui\imstb_truetype.h" />
     <ClInclude Include="src\Others\Win.h" />
-    <ClInclude Include="src\Windows.h" />
+    <ClInclude Include="src\Level\Windows.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\image\Background.jpeg" />
