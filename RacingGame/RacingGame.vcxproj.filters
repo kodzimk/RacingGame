@@ -45,12 +45,12 @@
     <ClCompile Include="src\StartMenu\Graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="dep\lib\x64\Debug\DirectXTK.lib" />
-    <Library Include="dep\lib\x64\Release\DirectXTK.lib" />
-    <Library Include="dep\lib\x86\Debug\DirectXTK.lib" />
-    <Library Include="dep\lib\x86\Release\DirectXTK.lib" />
+    <ClCompile Include="src\imgui\etc_elements.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\imgui\nav_elements.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Others\Win.h">
@@ -71,9 +71,6 @@
     <ClInclude Include="src\imgui\imgui_impl_win32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\imgui\imgui_internal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\imgui\imstb_rectpack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -92,6 +89,18 @@
     <ClInclude Include="src\Others\stbi_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\imgui\imgui_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\byte_array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\etc_elements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\imgui\nav_elements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\image\MyImage01.jpg">
@@ -100,5 +109,14 @@
     <Image Include="res\image\Background.jpeg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\image\speed.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="dep\lib\x86\Release\DirectXTK.lib" />
+    <Library Include="dep\lib\x86\Debug\DirectXTK.lib" />
+    <Library Include="dep\lib\x64\Release\DirectXTK.lib" />
+    <Library Include="dep\lib\x64\Debug\DirectXTK.lib" />
   </ItemGroup>
 </Project>

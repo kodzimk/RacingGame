@@ -1,24 +1,24 @@
 #include "Menu.h"
-#include"..\imgui\imgui_impl_dx11.h"
-#include"..\imgui\imgui.h"
-#include"..\imgui\imgui_impl_win32.h"
-
-extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND window, UINT msg, WPARAM wParam, LPARAM lParam);
-
-LRESULT WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
-	if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam))
-		return true;
-
-	switch (msg)
-	{
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
-	}
-
-	return DefWindowProcW(hwnd, msg, wParam, lParam);
-}
+//#include"..\imgui\imgui.h"
+//#include"..\imgui\imgui_impl_dx11.h"
+//#include"..\imgui\imgui_impl_win32.h"
+//
+//extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND window, UINT msg, WPARAM wParam, LPARAM lParam);
+//
+//LRESULT WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+//{
+//	if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam))
+//		return true;
+//
+//	switch (msg)
+//	{
+//	case WM_DESTROY:
+//		PostQuitMessage(0);
+//		break;
+//	}
+//
+//	return DefWindowProcW(hwnd, msg, wParam, lParam);
+//}
 
 Menu::Menu(int width, int height, HINSTANCE hInstance)
 {
@@ -65,7 +65,7 @@ std::optional<int> Menu::ProccesMessages()
 			return msg.wParam;
 		}
 
-		gfx->Update();
+		gfx->Update(hwnd);
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}

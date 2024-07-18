@@ -1,10 +1,25 @@
 #include "Graphics.h"
-#include"..\imgui\imgui_impl_dx11.h"
-#include"..\imgui\imgui.h"
-#include"..\imgui\imgui_impl_win32.h"
+
+#define IMGUI_DEFINE_MATH_OPERATORS
+#include "..\imgui\imgui.h"
+
+#include"..\imgui\imgui_internal.h"
+#include "..\imgui\imgui_impl_dx11.h"
+#include "..\imgui\imgui_impl_win32.h"
+
+#include"..\imgui\byte_array.h"
+#include"..\imgui\etc_elements.h"
+#include"..\imgui\nav_elements.h"
+
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "..\Others\stbi_image.h"
+
+#include<stdlib.h>
+
+ImFont* bold;
+ImFont* tab_icons;
+
 
 // Simple helper function to load an image into a DX11 texture with common settings
 bool LoadTextureFromFile(const char* filename, ID3D11ShaderResourceView** out_srv,
@@ -106,41 +121,44 @@ Graphics::Graphics(HWND hwnd)
 
 	pContext->RSSetViewports(1u, &vt);
 
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO();
-	ImGui_ImplWin32_Init(hwnd);
-	ImGui_ImplDX11_Init(pDevice.Get(), pContext.Get());
-	ImGui::StyleColorsDark();
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    io.IniFilename = NULL;
+    ImGui_ImplWin32_Init(hwnd);
+    ImGui_ImplDX11_Init(pDevice.Get(), pContext.Get());
+    ImGui::StyleColorsDark();
+    this->io = &io;
 
-	bool ret = LoadTextureFromFile("res/image/Background.jpeg", my_texture.GetAddressOf(), &my_image_width, &my_image_height, pDevice.Get());
+	bool ret = LoadTextureFromFile("res/image/speed.jpg", my_texture.GetAddressOf(), &my_image_width, &my_image_height, pDevice.Get());
 	IM_ASSERT(ret);
+
+    // Setup Dear ImGui contex
 
 }
 
 Graphics::~Graphics()
 {
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
 }
 
-void Graphics::Update()
+void Graphics::Update(HWND hwnd)
 {
-	Clear(1.0f, 1.0f, 1.0f);
-
-	int my_image_width = 0;
-	int my_image_height = 0;
-
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	ImGui::Begin("Racing Game",&exit,ImGuiWindowFlags_NoResize |
-		                    ImGuiWindowFlags_NoSavedSettings | 
-		                     ImGuiWindowFlags_NoCollapse | 
-		                      ImGuiWindowFlags_NoMove);
+	ImGui::Begin("Racing Game", &exit, ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoSavedSettings |
+		ImGuiWindowFlags_NoCollapse |
+		ImGuiWindowFlags_NoMove);
 
 	ImGui::SetWindowPos(ImVec2(0, 0));
 	ImGui::SetWindowSize(ImVec2(1024, 768));
-	ImGui::Image((void*)my_texture.Get(), ImVec2(768, 384));
+	ImGui::GetWindowDrawList()->AddImage((void*)my_texture.Get(), ImVec2(0, 0), ImVec2(800, 600));
+	ImGui::GetWindowDrawList()->AddText(GetDefaultFont(),30.f,ImVec2(230, 100), ImColor(250, 250, 250), "Need For Speed : Demo");
 	ImGui::End();
 
 	ImGui::Render();
@@ -148,3 +166,4 @@ void Graphics::Update()
 
 	End();
 }
+

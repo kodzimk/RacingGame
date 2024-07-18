@@ -71,32 +71,34 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)dep\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)dep\lib\x86\Debug;$(SolutionDir)dep\lib\other</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)dep\include;;$(SolutionDir)src\imgui</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)dep\lib\other;$(SolutionDir)dep\lib\x86\Debug</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)dep\include</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)dep\include;;$(SolutionDir)src\imgui</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)dep\lib\x86\Release;$(SolutionDir)dep\lib\other</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)dep\include</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)dep\include;;$(SolutionDir)src\imgui</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)dep\include</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)dep\include;;$(SolutionDir)src\imgui</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)dep\lib\x64\Release;$(SolutionDir)dep\lib\other</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);IMGUI_DEFINE_MATH_OPERATORS;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;DirectXTK.lib;DXGI.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -105,9 +107,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);IMGUI_DEFINE_MATH_OPERATORS;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -115,21 +118,24 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;DirectXTK.lib;DXGI.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\lib\x86\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>NotSet</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>
       </AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -138,9 +144,10 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);IMGUI_DEFINE_MATH_OPERATORS;</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,6 +158,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\imgui\etc_elements.cpp" />
+    <ClCompile Include="src\imgui\nav_elements.cpp" />
     <ClCompile Include="src\StartMenu\Graphics.cpp" />
     <ClCompile Include="src\StartMenu\Menu.cpp" />
     <ClCompile Include="src\imgui\imgui.cpp" />
@@ -163,12 +172,10 @@
     <ClCompile Include="src\Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="dep\lib\x64\Debug\DirectXTK.lib" />
-    <Library Include="dep\lib\x64\Release\DirectXTK.lib" />
-    <Library Include="dep\lib\x86\Debug\DirectXTK.lib" />
-    <Library Include="dep\lib\x86\Release\DirectXTK.lib" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="src\imgui\byte_array.h" />
+    <ClInclude Include="src\imgui\etc_elements.h" />
+    <ClInclude Include="src\imgui\imgui_internal.h" />
+    <ClInclude Include="src\imgui\nav_elements.h" />
     <ClInclude Include="src\Others\stbi_image.h" />
     <ClInclude Include="src\StartMenu\Graphics.h" />
     <ClInclude Include="src\StartMenu\Menu.h" />
@@ -176,7 +183,6 @@
     <ClInclude Include="src\imgui\imgui.h" />
     <ClInclude Include="src\imgui\imgui_impl_dx11.h" />
     <ClInclude Include="src\imgui\imgui_impl_win32.h" />
-    <ClInclude Include="src\imgui\imgui_internal.h" />
     <ClInclude Include="src\imgui\imstb_rectpack.h" />
     <ClInclude Include="src\imgui\imstb_textedit.h" />
     <ClInclude Include="src\imgui\imstb_truetype.h" />
@@ -186,6 +192,13 @@
   <ItemGroup>
     <Image Include="res\image\Background.jpeg" />
     <Image Include="res\image\MyImage01.jpg" />
+    <Image Include="res\image\speed.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="dep\lib\x64\Debug\DirectXTK.lib" />
+    <Library Include="dep\lib\x64\Release\DirectXTK.lib" />
+    <Library Include="dep\lib\x86\Debug\DirectXTK.lib" />
+    <Library Include="dep\lib\x86\Release\DirectXTK.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
