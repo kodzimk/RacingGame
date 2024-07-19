@@ -41,7 +41,32 @@ LevelGraphics::LevelGraphics(HWND hwnd)
 	pSwapChain->GetBuffer(0, __uuidof(ID3D11Resource), reinterpret_cast<void**>(backBuffer.GetAddressOf()));
 	pDevice->CreateRenderTargetView(backBuffer.Get(), NULL, pRenderTarget.GetAddressOf());
 
-	pContext->OMSetRenderTargets(1u, pRenderTarget.GetAddressOf(), nullptr);
+
+	D3D11_TEXTURE2D_DESC dtd = {};
+	dtd.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	dtd.ArraySize = 1;
+	dtd.MipLevels = 1;
+	dtd.CPUAccessFlags = 0;
+	dtd.MiscFlags = 0;
+	dtd.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	dtd.Usage = D3D11_USAGE_DEFAULT;
+	dtd.SampleDesc.Count = 1;
+	dtd.SampleDesc.Quality = 0;
+	dtd.Height = 600;
+	dtd.Width = 800;
+
+
+	pDevice->CreateTexture2D(&dtd, nullptr, pDepthBuffer.GetAddressOf());
+	pDevice->CreateDepthStencilView(pDepthBuffer.Get(), nullptr, pDepthView.GetAddressOf());
+
+	pContext->OMSetRenderTargets(1, pRenderTarget.GetAddressOf(), pDepthView.Get());
+
+	D3D11_DEPTH_STENCIL_DESC dt = {};
+	dt.DepthFunc = D3D11_COMPARISON_LESS;
+	dt.DepthEnable = true;
+	dt.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+
+	pDevice->CreateDepthStencilState(&dt, depthState.GetAddressOf());
 
 	D3D11_VIEWPORT vt;
 	vt.TopLeftX = 0;
@@ -56,7 +81,7 @@ LevelGraphics::LevelGraphics(HWND hwnd)
 	camera.SetPosition(0.0f, 0.0f, -2.0f);
 	camera.SetProjection(90.f, static_cast<float>(1024) / static_cast<float>(768), 0.1f, 1000.f);
 
-	player = std::make_unique<Player>("../RacingGame/res/objects/Nissan.obj",pDevice.Get(),pContext.Get(), L"PVertex_Shader.cso", L"PPixel_Shader.cso", 1.0f);
+	player = std::make_unique<Player>("../RacingGame/res/objects/Nissan.obj",L"../RacingGame/res/image/Nissan.png",pDevice.Get(), pContext.Get(), L"PVertex_Shader.cso", L"PPixel_Shader.cso", 1.0f);
 }	
 LevelGraphics::~LevelGraphics()
 {
@@ -83,6 +108,9 @@ void LevelGraphics::Update(HWND hwnd)
 
 	pDevice->CreateBuffer(&Cbd, &csd, player->pConstBuffer.GetAddressOf());
 	pContext->VSSetConstantBuffers(0u, 1u, player->pConstBuffer.GetAddressOf());
+
+
+	pContext->OMSetDepthStencilState(depthState.Get(), 0);
 
 	player->Draw(pContext.Get(), pDevice.Get(), matrix);
 	End();

@@ -1,10 +1,10 @@
 #include "Player.h"
 #include<string>
 #include<d3dcompiler.h>
-#include<assimp/BaseImporter.h>
+#include<WICTextureLoader.h>
+#include<sstream>
 
-
-Player::Player(const std::string& filePath, ID3D11Device* pDevice,ID3D11DeviceContext* pContext, LPCWSTR vertexDir, LPCWSTR pixelDir, float depthZ)
+Player::Player(const std::string& filePath, const wchar_t* filename, ID3D11Device* pDevice,ID3D11DeviceContext* pContext, LPCWSTR vertexDir, LPCWSTR pixelDir, float depthZ)
 {
 	this->pDevice = pDevice;
 	this->pContext = pContext;
@@ -12,7 +12,21 @@ Player::Player(const std::string& filePath, ID3D11Device* pDevice,ID3D11DeviceCo
 	if (!LoadModel(filePath))
 		throw "ngaa";
 
-	this->SetRotation(0.0f, 0.0f, 0.0f);
+	D3D11_SAMPLER_DESC spd = {};
+	spd.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	spd.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	spd.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	spd.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	spd.ComparisonFunc = D3D11_COMPARISON_NEVER;
+	spd.MaxLOD = D3D11_FLOAT32_MAX;
+	spd.MinLOD = 0u;
+
+	pDevice->CreateSamplerState(&spd, pSampleState.GetAddressOf());
+	HRESULT hr = CreateWICTextureFromFile(pDevice, pContext, filename, nullptr, pTexture.GetAddressOf());
+	if (FAILED(hr))
+		throw "ERRORE TEXTURE";
+
+	this->SetRotation(0.0f, 135.f, 0.0f);
 	this->SetPosition(0.0f, -1.0f, 5.f);
 }
 Player::Player()
@@ -26,7 +40,6 @@ Player::~Player()
 
 void Player::Draw(ID3D11DeviceContext* pContext, ID3D11Device* pDevice, DirectX::XMMATRIX matrix)
 {
-
 	Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
 	D3DReadFileToBlob(L"PPixel_Shader.cso", &pBlob);
 
@@ -46,6 +59,8 @@ void Player::Draw(ID3D11DeviceContext* pContext, ID3D11Device* pDevice, DirectX:
 
 	pContext->VSSetShader(pVertexShader.Get(), nullptr, 0u);
 	pContext->PSSetShader(pPixelShader.Get(), nullptr, 0u);
+	pContext->PSSetSamplers(0u, 1u, pSampleState.GetAddressOf());
+	pContext->PSSetShaderResources(0u, 1u, pTexture.GetAddressOf());
 	pContext->IASetInputLayout(pInputLayout.Get());
 
 	for (int i = 0; i < meshes.size(); i++)

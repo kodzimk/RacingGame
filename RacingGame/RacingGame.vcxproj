@@ -164,6 +164,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="src\Entity\Mesh.cpp" />
     <ClCompile Include="src\Entity\Player.cpp" />
     <ClCompile Include="src\System\Camera.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="src\Level\Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Model.h" />
     <ClInclude Include="src\Entity\Mesh.h" />
     <ClInclude Include="src\Entity\Player.h" />
     <ClInclude Include="src\System\Camera.h" />

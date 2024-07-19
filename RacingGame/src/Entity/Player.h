@@ -9,7 +9,7 @@ using namespace DirectX;
 class Player
 {
 public:
-	Player(const std::string& filePath, ID3D11Device* pDevice,ID3D11DeviceContext* pContext,LPCWSTR vertexDir, LPCWSTR pixelDir, float depthZ);
+	Player(const std::string& filePath, const wchar_t* fileName, ID3D11Device* pDevice,ID3D11DeviceContext* pContext,LPCWSTR vertexDir, LPCWSTR pixelDir, float depthZ);
 	Player();
 	~Player();
 
@@ -72,6 +72,8 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> pIndexBuffer;
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> pVertexShader;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> pPixelShader;
+	Microsoft::WRL::ComPtr<ID3D11SamplerState> pSampleState;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pTexture;
 
 private:
 	UINT size = 0;

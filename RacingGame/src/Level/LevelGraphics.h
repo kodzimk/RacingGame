@@ -18,6 +18,7 @@ public:
 	{
 		const float color[] = { red,green,blue,1.0f };
 		pContext->ClearRenderTargetView(pRenderTarget.Get(), color);
+		pContext->ClearDepthStencilView(pDepthView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	}
 	void Update(HWND hwnd);
 	void End() {
@@ -30,4 +31,7 @@ public:
 	Microsoft::WRL::ComPtr<IDXGISwapChain> pSwapChain;
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext;
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> pRenderTarget;
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> pDepthView;
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> pDepthBuffer;
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthState;
 };
