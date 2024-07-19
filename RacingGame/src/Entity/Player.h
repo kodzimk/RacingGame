@@ -67,21 +67,14 @@ private:
 	Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene);
 public:
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> pInputLayout;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> pVertexBuffer;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> pConstBuffer;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> pIndexBuffer;
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> pVertexShader;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> pPixelShader;
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> pSampleState;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> pTexture;
-
+	std::vector<Mesh> meshes;
 private:
 	UINT size = 0;
 	Microsoft::WRL::ComPtr<ID3D11Device> pDevice;
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext;
-public:
-	std::vector<Mesh> meshes;
-	DirectX::XMFLOAT3 position = { 0.0f,0.0f,0.0f };
-	DirectX::XMMATRIX transform = {};
-
 };
