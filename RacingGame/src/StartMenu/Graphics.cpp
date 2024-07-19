@@ -115,8 +115,8 @@ Graphics::Graphics(HWND hwnd)
 	D3D11_VIEWPORT vt;
 	vt.TopLeftX = 0;
 	vt.TopLeftY = 0;
-	vt.Width    = 800;
-	vt.Height   = 600;
+	vt.Width    = 1024;
+	vt.Height   = 768;
 	vt.MinDepth = 0;
 	vt.MaxDepth = 1;
 

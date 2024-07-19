@@ -7,6 +7,9 @@
 #include<optional>
 #include"..\System\Keyboard.h"
 #include"..\System\Mouse.h"
+#include"LevelGraphics.h"
+
+class LevelGraphics;
 
 class Window
 {
@@ -16,9 +19,9 @@ public:
 	~Window();
 	std::optional<int>  ProccesMessages();
 	void InputHandler();
+	void Update();
 
 public:
-	const std::string& getWindowName() const { return windowName; };
 	const HWND getWindow() { return hwnd; };
 	const HINSTANCE getInstance() { return hInstance; };
 private:
@@ -26,14 +29,13 @@ private:
 	static LRESULT CALLBACK HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept;
 	LRESULT CALLBACK HandleMsg(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 public:
+	std::unique_ptr<LevelGraphics> gfx;
 	 KeyboardClass keyboard;
 	 MouseClass mouse;
 	 int ecode;
 private:
 	HINSTANCE hInstance;
 	HWND hwnd;
-	std::string windowName;
-	std::string name;
 };
 
 

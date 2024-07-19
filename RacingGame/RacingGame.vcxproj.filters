@@ -63,6 +63,12 @@
     <ClCompile Include="src\System\KeyboardEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Level\LevelGraphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Others\Win.h">
@@ -125,6 +131,12 @@
     <ClInclude Include="src\System\KeyboardEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Level\LevelGraphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\System\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\image\MyImage01.jpg">
@@ -142,5 +154,9 @@
     <Library Include="dep\lib\x86\Debug\DirectXTK.lib" />
     <Library Include="dep\lib\x64\Release\DirectXTK.lib" />
     <Library Include="dep\lib\x64\Debug\DirectXTK.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="src\Level\Shaders\PVertex_Shader.hlsl" />
+    <FxCompile Include="src\Level\Shaders\PPixel_Shader.hlsl" />
   </ItemGroup>
 </Project>

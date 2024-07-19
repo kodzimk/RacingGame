@@ -4,6 +4,8 @@
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
 {
+	CoInitialize(NULL);
+	
 	Menu* menu = new Menu(1024, 768, hInstance);
 	Window* window = nullptr;
 	int result = 0;
@@ -32,6 +34,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 		{
 			window->ProccesMessages();
 			window->InputHandler();
+			window->Update();
 			if(window->ecode == 2)
 			{
 				result = window->ecode;
@@ -40,7 +43,6 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 			}
 		}
 	}
-	
 
 	return result;
 }
