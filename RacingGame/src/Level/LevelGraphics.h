@@ -4,6 +4,7 @@
 #include"..\System\Camera.h"
 #include<d3d11.h>
 #include<wrl.h>
+#include"..\Entity\Player.h"
 
 
 class LevelGraphics
@@ -24,16 +25,9 @@ public:
 	}
 public:
 	Camera camera;
+	std::unique_ptr<Player> player;
 	Microsoft::WRL::ComPtr<ID3D11Device> pDevice;
 	Microsoft::WRL::ComPtr<IDXGISwapChain> pSwapChain;
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext;
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> pRenderTarget;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> my_texture;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> pVertexBuffer;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> pIndexBuffer;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> pConstantBuffer;
-	Microsoft::WRL::ComPtr<ID3D11VertexShader> pVertexShader;
-	Microsoft::WRL::ComPtr<ID3D11PixelShader> pPixelShader;
-	Microsoft::WRL::ComPtr<ID3D11InputLayout> pInputLayout;
-
 };

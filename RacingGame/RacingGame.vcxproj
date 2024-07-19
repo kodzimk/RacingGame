@@ -158,6 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entity\Player.cpp" />
     <ClCompile Include="src\System\Camera.cpp" />
     <ClCompile Include="src\Level\LevelGraphics.cpp" />
     <ClCompile Include="src\System\Keyboard.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="src\Level\Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entity\Player.h" />
     <ClInclude Include="src\System\Camera.h" />
     <ClInclude Include="src\Level\LevelGraphics.h" />
     <ClInclude Include="src\System\Keyboard.h" />
