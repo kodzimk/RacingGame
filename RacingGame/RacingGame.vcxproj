@@ -79,7 +79,8 @@
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SolutionDir)dep\lib\x86\Release;$(SolutionDir)dep\lib\other</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)dep\include;;$(SolutionDir)src\imgui</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)dep\include;$(SolutionDir)src\imgui</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SolutionDir)RacingGame\dep\lib\x64\Debug;$(SolutionDir)RacingGame\dep\lib\other</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)dep\include;;$(SolutionDir)src\imgui</IncludePath>
@@ -93,12 +94,13 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;DirectXTK.lib;DXGI.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\lib\other;C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\lib\x86\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -111,6 +113,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -118,24 +121,24 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;DirectXTK.lib;DXGI.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\lib\x86\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\lib\other;C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\lib\x86\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;dSINGLE;NOMINMAX;%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>DXGI.lib;d3d11.lib;D3DCompiler.lib;DirectXTK.lib;assimp-vc143-mt.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -148,6 +151,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\STARLINECOMP\Desktop\C++\RacingGame\RacingGame\dep\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -155,9 +159,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;DirectXTK.lib;DXGI.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entity\Mesh.cpp" />
     <ClCompile Include="src\Entity\Player.cpp" />
     <ClCompile Include="src\System\Camera.cpp" />
     <ClCompile Include="src\Level\LevelGraphics.cpp" />
@@ -179,6 +186,7 @@
     <ClCompile Include="src\Level\Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Entity\Mesh.h" />
     <ClInclude Include="src\Entity\Player.h" />
     <ClInclude Include="src\System\Camera.h" />
     <ClInclude Include="src\Level\LevelGraphics.h" />
@@ -209,6 +217,7 @@
     <Image Include="res\image\speed.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Library Include="dep\lib\other\assimp-vc143-mt.lib" />
     <Library Include="dep\lib\x64\Debug\DirectXTK.lib" />
     <Library Include="dep\lib\x64\Release\DirectXTK.lib" />
     <Library Include="dep\lib\x86\Debug\DirectXTK.lib" />

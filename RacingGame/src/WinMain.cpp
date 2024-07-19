@@ -2,6 +2,7 @@
 #include"Level/Windows.h"
 #include"..\src\Others\Win.h"
 
+
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
 {
 	CoInitialize(NULL);

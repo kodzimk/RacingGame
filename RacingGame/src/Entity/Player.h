@@ -2,21 +2,14 @@
 #include<d3d11.h>
 #include<wrl.h>
 #include<DirectXMath.h>
+#include"Mesh.h"
 
 using namespace DirectX;
-struct Vertex {
-	float x;
-	float y;
-	float z;
-	float r;
-	float g;
-	float a;
-};
 
 class Player
 {
 public:
-	Player(ID3D11Device* pDevice, LPCWSTR vertexDir, LPCWSTR pixelDir, float depthZ);
+	Player(const std::string& filePath, ID3D11Device* pDevice,ID3D11DeviceContext* pContext,LPCWSTR vertexDir, LPCWSTR pixelDir, float depthZ);
 	Player();
 	~Player();
 
@@ -66,7 +59,12 @@ public:
 	XMVECTOR vec_backward;
 
 	//Draw Elements
+public:
 	void Draw(ID3D11DeviceContext* pContext, ID3D11Device* pDevice,DirectX::XMMATRIX matrix);
+private:
+	bool LoadModel(const std::string& filePath);
+	void ProcessNode(aiNode* node, const aiScene* scene);
+	Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene);
 public:
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> pInputLayout;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> pVertexBuffer;
@@ -76,9 +74,11 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> pPixelShader;
 
 private:
-	Vertex vertices[8];
 	UINT size = 0;
+	Microsoft::WRL::ComPtr<ID3D11Device> pDevice;
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext;
 public:
+	std::vector<Mesh> meshes;
 	DirectX::XMFLOAT3 position = { 0.0f,0.0f,0.0f };
 	DirectX::XMMATRIX transform = {};
 

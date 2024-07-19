@@ -42,13 +42,8 @@
 #define NOTAPE
 #endif
 
-#define NOMINMAX
+
 
 #define STRICT
-
-#pragma comment(lib,"d3d11.lib")
-#pragma comment(lib,"DirectXTK.lib")
-#pragma comment(lib,"DXGI.lib")
-#pragma comment(lib,"D3DCompiler.lib")
 
 #include <Windows.h>

@@ -72,6 +72,9 @@
     <ClCompile Include="src\Entity\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entity\Mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Others\Win.h">
@@ -143,6 +146,9 @@
     <ClInclude Include="src\Entity\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Entity\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\image\MyImage01.jpg">
@@ -160,6 +166,7 @@
     <Library Include="dep\lib\x86\Debug\DirectXTK.lib" />
     <Library Include="dep\lib\x64\Release\DirectXTK.lib" />
     <Library Include="dep\lib\x64\Debug\DirectXTK.lib" />
+    <Library Include="dep\lib\other\assimp-vc143-mt.lib" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="src\Level\Shaders\PVertex_Shader.hlsl" />

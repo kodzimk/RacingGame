@@ -56,7 +56,7 @@ LevelGraphics::LevelGraphics(HWND hwnd)
 	camera.SetPosition(0.0f, 0.0f, -2.0f);
 	camera.SetProjection(90.f, static_cast<float>(1024) / static_cast<float>(768), 0.1f, 1000.f);
 
-	player = std::make_unique<Player>(pDevice.Get(),L"PVertex_Shader.cso", L"PPixel_Shader.cso", 1.0f);
+	player = std::make_unique<Player>("../RacingGame/res/objects/Nissan.obj",pDevice.Get(),pContext.Get(), L"PVertex_Shader.cso", L"PPixel_Shader.cso", 1.0f);
 }	
 LevelGraphics::~LevelGraphics()
 {
