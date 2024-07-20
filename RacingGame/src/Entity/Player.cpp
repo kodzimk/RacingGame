@@ -27,7 +27,7 @@ Player::Player(const std::string& filePath, const wchar_t* filename, ID3D11Devic
 		throw "ERRORE TEXTURE";
 
 	this->SetRotation(0.0f, 135.f, 0.0f);
-	this->SetPosition(0.0f, -1.0f, 5.f);
+	this->SetPosition(0.3f, -0.3f, 2.f);
 }
 Player::Player()
 {
@@ -36,6 +36,7 @@ Player::Player()
 }
 Player::~Player()
 {
+	
 }
 
 void Player::Draw(ID3D11DeviceContext* pContext, ID3D11Device* pDevice, DirectX::XMMATRIX matrix)

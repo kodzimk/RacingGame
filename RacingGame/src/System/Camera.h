@@ -20,24 +20,27 @@ public:
 	const XMVECTOR GetBackWardVector() const;
 	const XMVECTOR GetLeftVector() const;
 	const XMVECTOR GetRightVector() const;
+	void SetLookAtPos(XMFLOAT3 lookAtPos);
 	XMMATRIX GetViewMatrix();
 	XMMATRIX GetProjectionMatrix();
 
 private:
 	void UpdateViewMatrix();
 
-private:
+public:
 	XMMATRIX projectionMatrix;
 	XMMATRIX viewMatrix;
 	XMVECTOR rotVector;
 	XMVECTOR posVector;
 	XMFLOAT3 rot;
 	XMFLOAT3 pos;
-
+public:
 	XMVECTOR front_vec;
 	XMVECTOR back_vec;
 	XMVECTOR left_vec;
 	XMVECTOR right_vec;
+
+private:
 
 	const XMVECTOR FORWARD_VECTOR = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
 	const XMVECTOR BACWARD_VECTOR = XMVectorSet(0.0f, 0.0f, -1.0f, 0.0f);

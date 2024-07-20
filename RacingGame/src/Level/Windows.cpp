@@ -258,29 +258,38 @@ void Window::InputHandler()
 		{
 			if (me.GetType() == MouseEvent::EventType::RAW_MOVE)
 			{
-				this->gfx->camera.AdjustRotation((float)me.GetPosY() * 0.01f, (float)me.GetPosX() * 0.01f, 0);
+				this->gfx->player->AdjustRotation(0.0f, (float)me.GetPosX() * 0.01f, 0);
+				this->gfx->camera.AdjustRotation(0.0f, (float)me.GetPosX() * 0.01f, 0);	
 			}
 		}
 	}
-
-	const float cameraSpeed = 0.05f;
+	
+	const float cameraSpeed = 0.1f;
 
 	if (keyboard.KeyIsPressed('W'))
 	{
 		this->gfx->camera.AdjustPosition(this->gfx->camera.GetForwardVector() * cameraSpeed);
+		this->gfx->player->AdjustPosition(this->gfx->camera.GetForwardVector() * cameraSpeed);
 	}
 	if (keyboard.KeyIsPressed('S'))
 	{
 		this->gfx->camera.AdjustPosition(this->gfx->camera.GetBackWardVector() * cameraSpeed);
+		this->gfx->player->AdjustPosition(this->gfx->camera.GetBackWardVector() * cameraSpeed);
 	}
 	if (keyboard.KeyIsPressed('A'))
 	{
 		this->gfx->camera.AdjustPosition(this->gfx->camera.GetLeftVector() * cameraSpeed);
+		this->gfx->player->AdjustPosition(this->gfx->camera.GetLeftVector() * cameraSpeed);
 	}
 	if (keyboard.KeyIsPressed('D'))
 	{
 		this->gfx->camera.AdjustPosition(this->gfx->camera.GetRightVector() * cameraSpeed);
+		this->gfx->player->AdjustPosition(this->gfx->camera.GetRightVector() * cameraSpeed);
 	}
+	XMVECTOR result = this->gfx->camera.posVector + this->gfx->camera.GetForwardVector() * 7.f + this->gfx->camera.GetRightVector() * -1.19f;
+	XMFLOAT3 temp;
+	XMStoreFloat3(&temp, result);
+	this->gfx->player->SetPosition(temp.x, temp.y - 2.5f, temp.z);
 }
 
 void Window::Update()

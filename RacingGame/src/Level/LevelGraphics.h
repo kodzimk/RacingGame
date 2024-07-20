@@ -27,6 +27,7 @@ public:
 public:
 	Camera camera;
 	std::unique_ptr<Player> player;
+	std::unique_ptr<Player> player2;
 	Microsoft::WRL::ComPtr<ID3D11Device> pDevice;
 	Microsoft::WRL::ComPtr<IDXGISwapChain> pSwapChain;
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext;

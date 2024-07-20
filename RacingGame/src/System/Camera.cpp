@@ -121,10 +121,38 @@ void Camera::UpdateViewMatrix()
 
 	viewMatrix = XMMatrixLookAtLH(posVector, frontVector, upDir);
 
-	XMMATRIX pitchRot = XMMatrixRotationRollPitchYaw(rot.x, rot.y, 0.0f);
+	XMMATRIX pitchRot = XMMatrixRotationRollPitchYaw(0.0f, rot.y, rot.z);
 	front_vec = XMVector3TransformCoord(FORWARD_VECTOR, pitchRot);
 	back_vec = XMVector3TransformCoord(BACWARD_VECTOR, pitchRot);
 	left_vec = XMVector3TransformCoord(LEFT_VECTOR, pitchRot);
 	right_vec = XMVector3TransformCoord(RIGHT_VECTOR, pitchRot);
 
+}
+
+void Camera::SetLookAtPos(XMFLOAT3 lookAtPos)
+{
+	//Verify that look at pos is not the same as cam pos. They cannot be the same as that wouldn't make sense and would result in undefined behavior.
+	if (lookAtPos.x == this->pos.x && lookAtPos.y == this->pos.y && lookAtPos.z == this->pos.z)
+		return;
+
+	lookAtPos.x = this->pos.x - lookAtPos.x;
+	lookAtPos.y = this->pos.y - lookAtPos.y;
+	lookAtPos.z = this->pos.z - lookAtPos.z;
+
+	float pitch = 0.0f;
+	if (lookAtPos.y != 0.0f)
+	{
+		const float distance = sqrt(lookAtPos.x * lookAtPos.x + lookAtPos.z * lookAtPos.z);
+		pitch = atan(lookAtPos.y / distance);
+	}
+
+	float yaw = 0.0f;
+	if (lookAtPos.x != 0.0f)
+	{
+		yaw = atan(lookAtPos.x / lookAtPos.z);
+	}
+	if (lookAtPos.z > 0)
+		yaw += XM_PI;
+
+	this->SetRotation(pitch, yaw, 0.0f);
 }
