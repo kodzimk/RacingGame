@@ -286,10 +286,10 @@ void Window::InputHandler()
 		this->gfx->camera.AdjustPosition(this->gfx->camera.GetRightVector() * cameraSpeed);
 		this->gfx->player->AdjustPosition(this->gfx->camera.GetRightVector() * cameraSpeed);
 	}
-	XMVECTOR result = this->gfx->camera.posVector + this->gfx->camera.GetForwardVector() * 7.f + this->gfx->camera.GetRightVector() * -1.19f;
+	XMVECTOR result = this->gfx->camera.posVector + this->gfx->camera.GetForwardVector() * 6.f + this->gfx->camera.GetRightVector() * -1.19f;
 	XMFLOAT3 temp;
 	XMStoreFloat3(&temp, result);
-	this->gfx->player->SetPosition(temp.x, temp.y - 2.5f, temp.z);
+	this->gfx->player->SetPosition(temp.x, temp.y - 2.f, temp.z);
 }
 
 void Window::Update()
