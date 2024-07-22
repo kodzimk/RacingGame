@@ -1,5 +1,6 @@
 #include "Windows.h"
 #include<assert.h>
+#include<xaudio2.h>
 
 Window::Window(int width, int height, HINSTANCE hInstance)
 {
@@ -264,7 +265,7 @@ void Window::InputHandler()
 		}
 	}
 	
-	const float cameraSpeed = 0.1f;
+	const float cameraSpeed = 7.f;
 
 	if (keyboard.KeyIsPressed('W'))
 	{

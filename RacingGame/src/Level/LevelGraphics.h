@@ -5,6 +5,7 @@
 #include<d3d11.h>
 #include<wrl.h>
 #include"..\Entity\Player.h"
+#include"..\Entity\GameObject.h"
 
 
 class LevelGraphics
@@ -27,7 +28,7 @@ public:
 public:
 	Camera camera;
 	std::unique_ptr<Player> player;
-	std::unique_ptr<Player> player2;
+	std::unique_ptr<GameObject> map;
 	Microsoft::WRL::ComPtr<ID3D11Device> pDevice;
 	Microsoft::WRL::ComPtr<IDXGISwapChain> pSwapChain;
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> pContext;

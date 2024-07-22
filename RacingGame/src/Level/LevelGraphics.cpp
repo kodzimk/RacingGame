@@ -83,8 +83,9 @@ LevelGraphics::LevelGraphics(HWND hwnd)
 	camera.SetProjection(90.f, static_cast<float>(1024) / static_cast<float>(768), 0.1f, 1000.f);
 
 	player = std::make_unique<Player>("../RacingGame/res/objects/Nissan.obj",L"../RacingGame/res/image/Nissan.png",pDevice.Get(), pContext.Get(), L"PVertex_Shader.cso", L"PPixel_Shader.cso", 1.0f);
-	player2 = std::make_unique<Player>("../RacingGame/res/objects/Formula_Track.obj", L"../RacingGame/res/image/Asphalt.jpg", pDevice.Get(), pContext.Get(), L"PVertex_Shader.cso", L"PPixel_Shader.cso", 1.0f);
-	player2->SetPosition(0.0f, -1.0f, 10.0f);
+	map = std::make_unique<GameObject>("../RacingGame/res/objects/Formula_Track.obj", L"../RacingGame/res/image/Asphalt.jpg", pDevice.Get(), pContext.Get(), L"PVertex_Shader.cso", L"PPixel_Shader.cso", 1.0f);
+	map->SetPosition(0.0f, -1.0f, 0.0f);
+	map->SetScale(60.0f, 100.0f, 60.0f);
 }	
 LevelGraphics::~LevelGraphics()
 {
@@ -115,7 +116,7 @@ void LevelGraphics::Update(HWND hwnd)
 	pContext->VSSetConstantBuffers(0u, 1u, player->pConstBuffer.GetAddressOf());
 	player->Draw(pContext.Get(), pDevice.Get(), matrix);
 
-	matrix = worldMatrix * player2->worldMatrix * camera.GetViewMatrix() * camera.GetProjectionMatrix();
+	matrix = worldMatrix * map->worldMatrix * camera.GetViewMatrix() * camera.GetProjectionMatrix();
 	matrix = XMMatrixTranspose(matrix);
 
 	D3D11_BUFFER_DESC Cbd2 = {};
@@ -129,8 +130,8 @@ void LevelGraphics::Update(HWND hwnd)
 	D3D11_SUBRESOURCE_DATA csd2 = {};
 	csd2.pSysMem = &matrix;
 
-	pDevice->CreateBuffer(&Cbd2, &csd2, player2->pConstBuffer.GetAddressOf());
-	pContext->VSSetConstantBuffers(0u, 1u, player2->pConstBuffer.GetAddressOf());
-	player2->Draw(pContext.Get(), pDevice.Get(), matrix);
+	pDevice->CreateBuffer(&Cbd2, &csd2, map->pConstBuffer.GetAddressOf());
+	pContext->VSSetConstantBuffers(0u, 1u, map->pConstBuffer.GetAddressOf());
+	map->Draw(pContext.Get(), pDevice.Get(), matrix);
 	End();
 }
